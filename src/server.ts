@@ -1,7 +1,8 @@
 import app from "./app";
 import logger from "./utils/logger";
+import { env } from "./config/env";
 
-const PORT = process.env.PORT || 3000;
+const PORT = env.PORT;
 
 // Start server
 app.listen(PORT, () => {

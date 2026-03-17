@@ -2,11 +2,9 @@ import express from "express";
 import type { Request, Response } from "express";
 import cors from "cors";
 import morgan from "morgan";
-import dotenv from "dotenv";
 import logger from "./utils/logger";
 import { errorHandler, notFound } from "./middleware/errorHandler.middleware";
 
-dotenv.config();
 
 const app = express();
 app.use(cors());
