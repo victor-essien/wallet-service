@@ -26,3 +26,10 @@ export const errorHandler = (
     code: "INTERNAL_SERVER_ERROR",
   });
 };
+
+export const notFound = (req: Request, res: Response): void => {
+  res.status(404).json({
+    error: 'Route not found',
+    status: 404,
+  });
+};
