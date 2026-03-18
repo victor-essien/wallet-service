@@ -13,7 +13,7 @@ export class TransactionRepository {
   }
 
   async getSummary(userId: string) {
-    const result = await db<Transaction>("transactions")
+    const result = await db("transactions")
       .where({ user_id: userId })
       .select(
         db.raw(`

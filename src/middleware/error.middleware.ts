@@ -98,7 +98,7 @@ export class InternalServerError extends AppError {
  */
 
 export class InsufficientFundsError extends AppError {
-  constructor(message: string = "Insufficient wallet balance") {
+  constructor(message: string = "Insufficient funds") {
     super(message, 400, true, "INSUFFICIENT_FUNDS");
     Object.setPrototypeOf(this, InsufficientFundsError.prototype);
   }

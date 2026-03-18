@@ -1,4 +1,4 @@
-import { v4 as uuid } from "uuid";
+import {v4 as uuid} from "uuid"
 import { db } from "../../database/knex";
 import { UserRepository } from "./user.repository";
 import { WalletRepository } from "../wallet/wallet.repository";
