@@ -1,0 +1,182 @@
+openapi: 3.0.0
+info:
+  title: Demo Credit Wallet Service API
+  version: 1.0.0
+  description: MVP wallet service for lending platform
+
+servers:
+  - url: http://localhost:3000/api
+
+paths:
+
+  /users:
+    post:
+      summary: Create a new user
+      tags: [User]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [name, email]
+              properties:
+                name:
+                  type: string
+                email:
+                  type: string
+      responses:
+        "200":
+          description: User created successfully
+
+  /users/{id}:
+    get:
+      summary: Get user by ID
+      tags: [User]
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: User retrieved successfully
+        "404":
+          description: User not found
+
+  /wallet/fund:
+    post:
+      summary: Fund wallet
+      tags: [Wallet]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [userId, amount]
+              properties:
+                userId:
+                  type: string
+                amount:
+                  type: number
+      responses:
+        "200":
+          description: Wallet funded
+
+  /wallet/transfer:
+    post:
+      summary: Transfer funds
+      tags: [Wallet]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [senderId, receiverId, amount]
+              properties:
+                senderId:
+                  type: string
+                receiverId:
+                  type: string
+                amount:
+                  type: number
+      responses:
+        "200":
+          description: Transfer successful
+        "400":
+          description: Invalid request
+        "404":
+          description: Wallet not found
+
+  /wallet/withdraw:
+    post:
+      summary: Withdraw funds
+      tags: [Wallet]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [userId, amount]
+              properties:
+                userId:
+                  type: string
+                amount:
+                  type: number
+      responses:
+        "200":
+          description: Withdrawal successful
+        "400":
+          description: Insufficient funds
+
+  /transactions/{userId}:
+    get:
+      summary: Get user transaction history
+      tags: [Transaction]
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: List of transactions
+        "404":
+          description: No transactions found
+
+  /transactions/{userId}/summary:
+    get:
+      summary: Get transaction summary
+      tags: [Transaction]
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Transaction summary
+
+components:
+  schemas:
+
+    User:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        email:
+          type: string
+
+    Wallet:
+      type: object
+      properties:
+        id:
+          type: string
+        user_id:
+          type: string
+        balance:
+          type: number
+
+    Transaction:
+      type: object
+      properties:
+        id:
+          type: string
+        user_id:
+          type: string
+        type:
+          type: string
+          enum: [FUND, WITHDRAW, TRANSFER_DEBIT, TRANSFER_CREDIT]
+        amount:
+          type: number
+        created_at:
+          type: string
