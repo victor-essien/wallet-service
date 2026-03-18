@@ -1,17 +1,19 @@
 import { db } from "../../database/knex";
+import { CreateTransactionInput, Transaction } from "./transaction.types";
+import { Knex } from "knex";
 export class TransactionRepository {
-  async create(data: any, trx: any) {
-    return trx("transactions").insert(data);
+  async create(data: CreateTransactionInput, trx: Knex.Transaction): Promise<void> {
+    return trx<Transaction>("transactions").insert(data);
   }
 
-  async findByUserId(userId: string) {
-    return db("transactions")
+  async findByUserId(userId: string): Promise<Transaction[]> {
+    return db<Transaction>("transactions")
       .where({ user_id: userId })
       .orderBy("created_at", "desc");
   }
 
   async getSummary(userId: string) {
-    const result = await db("transactions")
+    const result = await db<Transaction>("transactions")
       .where({ user_id: userId })
       .select(
         db.raw(`

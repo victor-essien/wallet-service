@@ -1,4 +1,13 @@
 
+// Wallet type
+export interface Wallet {
+  id: string;
+  user_id: string;
+  balance: number;
+  created_at?: Date;
+  updated_at?: Date;
+}
+
 // Type for funding wallet
 export interface FundWalletDTO {
     userId: string;
@@ -16,3 +25,7 @@ export interface WithDrawDTO {
     userId: string;
     amount: number;
 }
+
+
+
+export type CreateWalletInput = Omit<Wallet, "created_at" | "updated_at">;
