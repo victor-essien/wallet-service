@@ -4,7 +4,7 @@ import cors from "cors";
 import morgan from "morgan";
 import logger from "./utils/logger";
 import { errorHandler, notFound } from "./middleware/errorHandler.middleware";
-
+import userRoutes from "./modules/user/user.routes";
 
 const app = express();
 app.use(cors());
@@ -30,6 +30,8 @@ app.get("/health", (req, res) => {
     uptime: process.uptime(),
   });
 });
+// Define the user routes
+app.use("/api", userRoutes);
 
 // 404 handler
 app.use(notFound);
