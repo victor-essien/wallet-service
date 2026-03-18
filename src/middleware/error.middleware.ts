@@ -103,6 +103,27 @@ export class InsufficientFundsError extends AppError {
     Object.setPrototypeOf(this, InsufficientFundsError.prototype);
   }
 }
+/**
+ * 400 - Bad Request
+ * Used when amount is less than 0
+ */
+export class AmountLessError extends AppError {
+  constructor(message: string = "Amount must be greater than zero") {
+    super(message, 400, true, "AMOUNT_LESS_THAN_ZERO");
+    Object.setPrototypeOf(this, AmountLessError.prototype);
+  }
+}
+
+/**
+ * 400 - Bad Request
+ * Used when amount is invalid
+ */
+export class InvalidAmountError extends AppError {
+  constructor(message: string = "Invalid amount") {
+    super(message, 400, true, "INVALID_AMOUNT");
+    Object.setPrototypeOf(this, InvalidAmountError.prototype);
+  }
+}
 
 /**
  * 404 - Not found
@@ -131,10 +152,10 @@ export class UserNotFoundError extends AppError {
  * User already exists
  */
 export class UserAlreadyExistsError extends AppError {
-    constructor() {
-        super("User already exists", 409, true, "USER_ALREADY_EXISTS");
-        Object.setPrototypeOf(this, UserAlreadyExistsError.prototype)
-    }
+  constructor() {
+    super("User already exists", 409, true, "USER_ALREADY_EXISTS");
+    Object.setPrototypeOf(this, UserAlreadyExistsError.prototype);
+  }
 }
 /**
  * 403 - Forbidden
