@@ -6,6 +6,7 @@ import logger from "./utils/logger";
 import { errorHandler, notFound } from "./middleware/errorHandler.middleware";
 import userRoutes from "./modules/user/user.routes";
 import walletRoutes from "./modules/wallet/wallet.routes";
+import transactionRoutes from "./modules/transaction/transaction.routes";
 
 const app = express();
 app.use(cors());
@@ -35,7 +36,10 @@ app.get("/health", (req, res) => {
 app.use("/api", userRoutes);
 
 // Define the wallet routes
-app.use("/api", walletRoutes)
+app.use("/api", walletRoutes);
+
+// Define the transaction routes
+app.use("/api", transactionRoutes);
 
 // 404 handler
 app.use(notFound);
