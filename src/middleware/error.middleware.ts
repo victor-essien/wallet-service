@@ -127,6 +127,16 @@ export class UserNotFoundError extends AppError {
 }
 
 /**
+ * 409 - Already exists
+ * User already exists
+ */
+export class UserAlreadyExistsError extends AppError {
+    constructor() {
+        super("User already exists", 409, true, "USER_ALREADY_EXISTS");
+        Object.setPrototypeOf(this, UserAlreadyExistsError.prototype)
+    }
+}
+/**
  * 403 - Forbidden
  * Used when user is blacklisted
  */
