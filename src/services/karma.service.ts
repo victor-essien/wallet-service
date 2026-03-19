@@ -11,7 +11,7 @@ export class KarmaService {
     this.client = axios.create({
       baseURL: env.ADJUTOR_BASE_URL,
       headers: {
-        Authorization: `Bearer ${process.env.ADJUTOR_API_KEY}`,
+        Authorization: `Bearer ${env.ADJUTOR_API_KEY}`,
         "Content-Type": "application/json",
       },
       timeout: 5000,
