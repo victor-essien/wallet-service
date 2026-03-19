@@ -13,6 +13,6 @@ export class UserController {
   async getUser(req: Request, res: Response) {
     const reqParams = req.params.id as string;
     const user = await userService.getUser(reqParams);
-    return successResponse(req, user);
+    return successResponse(res, user);
   }
 }

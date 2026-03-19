@@ -24,7 +24,7 @@ async isBlacklisted(identity: string): Promise<boolean> {
       const response = await this.client.get<KarmaResponse>(
         `/verification/karma/${identity}`
       );
-
+     
       // If data exists → user has karma record → blacklist
       if (response.data?.data) {
         return true;
