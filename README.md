@@ -190,7 +190,7 @@ http://localhost:3000/api-docs
 
 ## 📊 ER Diagram
 
-![ER Diagram](./docs/erd.png)
+![ER Diagram](./src/docs/erd.png)
 
 ---
 
@@ -199,7 +199,7 @@ http://localhost:3000/api-docs
 ### 1. Clone Repo
 
 ```bash
-git clone https://github.com/<victor-essien>/wallet-service.git
+git clone https://github.com/victor-essien/wallet-service.git
 cd wallet-service
 ```
 
