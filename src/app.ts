@@ -7,12 +7,16 @@ import { errorHandler, notFound } from "./middleware/errorHandler.middleware";
 import userRoutes from "./modules/user/user.routes";
 import walletRoutes from "./modules/wallet/wallet.routes";
 import transactionRoutes from "./modules/transaction/transaction.routes";
+import { swaggerDocs } from "./config/swagger";
 
 const app = express();
 app.use(cors());
 app.use(morgan("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+// Swagger docs
+swaggerDocs(app);
 
 // Logging middleware
 app.use(
